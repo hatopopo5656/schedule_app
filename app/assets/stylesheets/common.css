@@ -22,7 +22,7 @@ body {
 }
 
 
-.Maine_menu {
+.maine_menu {
   width: fit-content;   /* ← 中身（＝table）の幅に自動で合わせる */
   margin: 0 auto;  
   background-color: rgb(236, 235, 235);
