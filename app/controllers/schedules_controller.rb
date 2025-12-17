@@ -5,7 +5,6 @@ class SchedulesController < ApplicationController
   def new
     @schedule = Schedule.new
   end
-  
   def create
     @schedule = Schedule.new(params.require(:schedule).permit(:title, :start_date, :end_date, :memo, :all_day))
     if @schedule.save
@@ -15,11 +14,10 @@ class SchedulesController < ApplicationController
       render "new", status: :unprocessable_entity
     end
   end
-  
   def show
     @schedule = Schedule.find(params[:id])
   end
-  
+
   def edit
     @schedule = Schedule.find(params[:id])
   end
@@ -31,9 +29,8 @@ class SchedulesController < ApplicationController
       redirect_to :schedules
     else
       render "edit", status: :unprocessable_entity
-  end
+    end
 end
-  
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
