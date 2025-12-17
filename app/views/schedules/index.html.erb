@@ -1,0 +1,47 @@
+<h4>スケジュール管理アプリ</h4>
+
+<div class="Maine_menu">
+
+<div class="contents">
+  <div class="list">予定一覧</div>
+  <div class="new_list"><%= link_to "新規追加", :new_schedule %></div>
+</div>
+
+<% if flash[:notice] %>
+  <p class="flash notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+ <thead>
+    <tr>
+      <th>id</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日時</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.id %></td>
+          <td><%= schedule.title %></td>
+          <td><%= schedule.start_date&.to_fs(:date_slash) %></td>
+          <td><%= schedule.end_date&.to_fs(:date_slash) %></td>
+          <td><%= schedule.all_day ? "〇" : "" %></td>
+          <td><%= schedule.updated_at.to_fs(:datetime_slash) %></td>
+          <td><%= link_to "詳細", schedule %></td>
+          <td><%= link_to "編集", [:edit, schedule] %></td>
+          <td><%= link_to "削除", schedule, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<div class="count">
+  <div class="count_total">予定合計: <%= @schedules.count %> 件</div>
+  <div class="count_day">今日は：<%= Date.today.strftime("%Y/%m/%d") %></div>
+  </div>
+</div>
+

@@ -1,0 +1,39 @@
+<h3>スケジュール詳細</h3>
+
+<table>
+
+  <tr>
+    <th>タイトル</th>
+    <td><%= @schedule.title %></td>
+  </tr>
+
+  <tr>
+    <th>開始日</th>
+    <td><%= @schedule.start_date.to_fs(:date_slash) %></td>
+  </tr>
+
+  <tr>
+    <th>終了日</th>
+    <td><%= @schedule.end_date.to_fs(:date_slash) %></td>
+  </tr>
+
+  <tr>
+    <th>終日</th>
+    <td><%= @schedule.all_day ? "〇" : "" %></td>
+  </tr>
+
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @schedule.memo %></td>
+  </tr>
+
+  <tr>
+    <td><%= link_to "編集", edit_schedule_path(@schedule) %></td>
+  </tr>
+</table>
+
+<div>
+  <ul>
+    <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+  </ul>
+</div>
