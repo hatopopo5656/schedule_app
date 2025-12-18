@@ -16,12 +16,15 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version 3.3.3
-          bundler-cache: true
-          bundler-version: 2.4.10
+          ruby-version: 3.3.3
+          bundler-cache: false
+
 
       - name: Configure bundler to avoid native extensions
         run: bundle config set --local force_ruby_platform true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
@@ -36,11 +39,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          ruby-version: 3.3.3
+          bundler-cache: false
 
       - name: Configure bundler to avoid native extensions
         run: bundle config set --local force_ruby_platform true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
@@ -54,11 +60,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          ruby-version: 3.3.3
+          bundler-cache: false
 
       - name: Configure bundler to avoid native extensions
         run: bundle config set --local force_ruby_platform true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
 
       - name: Lint code for consistent style
         run: bundle exec rubocop -f simple
@@ -82,11 +91,14 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+          ruby-version: 3.3.3
+          bundler-cache: false
 
       - name: Configure bundler to avoid native extensions
         run: bundle config set --local force_ruby_platform true
+
+      - name: Install gems
+        run: bundle install --jobs 4 --retry 3
 
       - name: Run tests
         env:
