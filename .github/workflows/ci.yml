@@ -20,6 +20,9 @@ jobs:
           bundler-cache: true
           bundler-version: 2.4.10
 
+      - name: Configure bundler to avoid native extensions
+        run: bundle config set --local force_ruby_platform true
+
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
@@ -36,6 +39,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Configure bundler to avoid native extensions
+        run: bundle config set --local force_ruby_platform true
+
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
 
@@ -50,6 +56,9 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Configure bundler to avoid native extensions
+        run: bundle config set --local force_ruby_platform true
 
       - name: Lint code for consistent style
         run: bundle exec rubocop -f simple
@@ -75,6 +84,9 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Configure bundler to avoid native extensions
+        run: bundle config set --local force_ruby_platform true
 
       - name: Run tests
         env:
